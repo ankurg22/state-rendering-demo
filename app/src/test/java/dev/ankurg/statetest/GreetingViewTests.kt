@@ -45,4 +45,22 @@ class GreetingViewTests {
         verify(view).showProgress(false)
         verify(view).showError(error)
     }
+
+    @Test
+    fun `greeting fetched successfully and shown to user`() {
+        // Setup
+        val greeting = "Hello Android Wizard"
+        val successState = GreetingState(
+            fetchStatus = FetchStatus.Success,
+            greeting = greeting,
+            error = null
+        )
+
+        // Act
+        view.render(successState)
+
+        // Assert
+        verify(view).showProgress(false)
+        verify(view).showGreeting(greeting)
+    }
 }
