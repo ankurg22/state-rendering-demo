@@ -1,5 +1,7 @@
 package dev.ankurg.statetest
 
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -26,6 +28,8 @@ class GreetingViewTests {
 
         // Assert
         verify(view).showProgress(true)
+        verify(view, never()).showError(any())
+        verify(view, never()).showGreeting(any())
     }
 
     @Test
@@ -44,6 +48,7 @@ class GreetingViewTests {
         // Assert
         verify(view).showProgress(false)
         verify(view).showError(error)
+        verify(view, never()).showGreeting(any())
     }
 
     @Test
@@ -62,5 +67,6 @@ class GreetingViewTests {
         // Assert
         verify(view).showProgress(false)
         verify(view).showGreeting(greeting)
+        verify(view, never()).showError(any())
     }
 }
